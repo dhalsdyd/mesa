@@ -1,21 +1,21 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_getx_boilerplate/app/data/provider/api_interface.dart';
+import 'package:moji_backoffice/app/data/provider/api_interface.dart';
 
-class FGBPInterceptor extends Interceptor {
+class MAMSInterceptor extends Interceptor {
   final Dio _dioInstance;
-  FGBPInterceptor(this._dioInstance);
+  MAMSInterceptor(this._dioInstance);
 
   //onRequest
   //onError
 }
 
-class FGBPApiProvider implements FGBPApiInterface {
+class MAMSApiProvider implements MAMSApiInterface {
   final Dio dio = Dio();
   final baseUrl = "https:...";
 
-  FGBPApiProvider() {
+  MAMSApiProvider() {
     dio.options.baseUrl = baseUrl;
-    dio.interceptors.add(FGBPInterceptor(dio));
+    dio.interceptors.add(MAMSInterceptor(dio));
   }
 
   @override

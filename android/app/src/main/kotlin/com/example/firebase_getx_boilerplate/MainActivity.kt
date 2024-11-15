@@ -1,4 +1,4 @@
-package com.example.firebase_getx_boilerplate
+package com.moji.console
 
 import io.flutter.embedding.android.FlutterActivity
 

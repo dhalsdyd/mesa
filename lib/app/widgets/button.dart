@@ -1,14 +1,15 @@
-import 'package:firebase_getx_boilerplate/app/core/theme/color_theme.dart';
+import 'package:moji_backoffice/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moji_backoffice/app/core/theme/text_theme.dart';
+import 'package:moji_backoffice/app/widgets/textfield.dart';
 
-class FGBPIconButton extends StatelessWidget {
+class MAMSIconButton extends StatelessWidget {
   final String iconPath;
   final int? badgeNumber;
   final void Function()? onTap;
-  const FGBPIconButton(this.iconPath, {this.badgeNumber, this.onTap, Key? key})
-      : super(key: key);
+  const MAMSIconButton(this.iconPath, {this.badgeNumber, this.onTap, Key? key}) : super(key: key);
 
   Widget _badge() {
     if (badgeNumber != null) {
@@ -19,16 +20,13 @@ class FGBPIconButton extends StatelessWidget {
           width: 16,
           height: 16,
           decoration: BoxDecoration(
-            color: FGBPColors.mainColor,
+            color: MAMSColors.mainColor,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
             child: Text(
               badgeNumber.toString(),
-              style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white),
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: Colors.white),
             ),
           ),
         ),
@@ -46,7 +44,7 @@ class FGBPIconButton extends StatelessWidget {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: FGBPColors.black,
+          color: MAMSColors.black,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Stack(
@@ -57,8 +55,7 @@ class FGBPIconButton extends StatelessWidget {
                 child: SizedBox(
                   width: 24,
                   height: 24,
-                  child:
-                      SvgPicture.asset(iconPath, color: FGBPColors.mainColor),
+                  child: SvgPicture.asset(iconPath, color: MAMSColors.mainColor),
                 ),
               ),
             ),
@@ -70,7 +67,7 @@ class FGBPIconButton extends StatelessWidget {
   }
 }
 
-class FGBPKeyboardReactiveButton extends StatelessWidget {
+class MAMSKeyboardReactiveButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final EdgeInsets innerPadding;
@@ -78,14 +75,14 @@ class FGBPKeyboardReactiveButton extends StatelessWidget {
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPKeyboardReactiveButton({
+  const MAMSKeyboardReactiveButton({
     Key? key,
     required this.child,
     this.width,
     this.innerPadding = const EdgeInsets.all(16),
     this.onTap,
     this.padding = const EdgeInsets.all(0),
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.disabled = false,
   }) : super(key: key);
 
@@ -117,11 +114,7 @@ class FGBPKeyboardReactiveButton extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(
-                              color.red, color.green, color.blue, 0.24),
-                          offset: const Offset(0, 4),
-                          blurRadius: 12)
+                      BoxShadow(color: Color.fromRGBO(color.red, color.green, color.blue, 0.24), offset: const Offset(0, 4), blurRadius: 12)
                     ],
                     borderRadius: BorderRadius.circular(12 * (1 - value)),
                   ),
@@ -151,21 +144,15 @@ class FGBPKeyboardReactiveButton extends StatelessWidget {
   }
 }
 
-class FGBPBaseButton extends StatelessWidget {
+class MAMSBaseButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final EdgeInsets padding;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPBaseButton(
-      {Key? key,
-      required this.child,
-      required this.padding,
-      this.onTap,
-      this.width,
-      this.color = FGBPColors.mainColor,
-      this.disabled = false})
+  const MAMSBaseButton(
+      {Key? key, required this.child, required this.padding, this.onTap, this.width, this.color = MAMSColors.mainColor, this.disabled = false})
       : super(key: key);
 
   @override
@@ -174,16 +161,11 @@ class FGBPBaseButton extends StatelessWidget {
       opacity: disabled ? 0.6 : 1,
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromRGBO(color.red, color.green, color.blue, 0.24),
-                offset: const Offset(0, 4),
-                blurRadius: 12)
-          ],
-          borderRadius: BorderRadius.circular(12),
+          boxShadow: [BoxShadow(color: Color.fromRGBO(color.red, color.green, color.blue, 0.24), offset: const Offset(0, 4), blurRadius: 12)],
+          borderRadius: BorderRadius.circular(6),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(6),
           child: Material(
             color: color,
             child: InkWell(
@@ -203,24 +185,24 @@ class FGBPBaseButton extends StatelessWidget {
   }
 }
 
-class FGBPLargeButton extends StatelessWidget {
+class MAMSLargeButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPLargeButton({
+  const MAMSLargeButton({
     Key? key,
     required this.child,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return MAMSBaseButton(
       padding: const EdgeInsets.all(24),
       width: width,
       onTap: onTap,
@@ -231,55 +213,53 @@ class FGBPLargeButton extends StatelessWidget {
   }
 }
 
-class FGBPLargeTextButton extends StatelessWidget {
+class MAMSLargeTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPLargeTextButton({
+  const MAMSLargeTextButton({
     Key? key,
     required this.text,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.textColor = Colors.white,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPLargeButton(
+    return MAMSLargeButton(
       width: width,
       onTap: onTap,
       color: color,
       disabled: disabled,
-      child: Text(text,
-          style: TextStyle(
-              color: textColor, fontSize: 16, fontWeight: FontWeight.w600)),
+      child: Text(text, style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600)),
     );
   }
 }
 
-class FGBPMediumButton extends StatelessWidget {
+class MAMSMediumButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPMediumButton({
+  const MAMSMediumButton({
     Key? key,
     required this.child,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return MAMSBaseButton(
       padding: const EdgeInsets.all(16),
       width: width,
       onTap: onTap,
@@ -290,55 +270,53 @@ class FGBPMediumButton extends StatelessWidget {
   }
 }
 
-class FGBPMediumTextButton extends StatelessWidget {
+class MAMSMediumTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPMediumTextButton({
+  const MAMSMediumTextButton({
     Key? key,
     required this.text,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.textColor = Colors.white,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPMediumButton(
+    return MAMSMediumButton(
       width: width,
       onTap: onTap,
       color: color,
       disabled: disabled,
-      child: Text(text,
-          style: TextStyle(
-              color: textColor, fontSize: 16, fontWeight: FontWeight.w500)),
+      child: Text(text, style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w500)),
     );
   }
 }
 
-class FGBPSmallButton extends StatelessWidget {
+class MAMSSmallButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPSmallButton({
+  const MAMSSmallButton({
     Key? key,
     required this.child,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.mainColor,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return MAMSBaseButton(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       width: width,
       onTap: onTap,
@@ -349,33 +327,31 @@ class FGBPSmallButton extends StatelessWidget {
   }
 }
 
-class FGBPSmallTextButton extends StatelessWidget {
+class MAMSSmallTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPSmallTextButton({
+  const MAMSSmallTextButton({
     Key? key,
     required this.text,
     this.onTap,
     this.width,
-    this.color = FGBPColors.mainColor,
+    this.color = MAMSColors.button,
     this.textColor = Colors.white,
     this.disabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FGBPSmallButton(
+    return MAMSSmallButton(
       width: width,
       onTap: onTap,
       color: color,
       disabled: disabled,
-      child: Text(text,
-          style: TextStyle(
-              color: textColor, fontSize: 16, fontWeight: FontWeight.w600)),
+      child: Text(text, style: MAMSTextTheme.medium16),
     );
   }
 }

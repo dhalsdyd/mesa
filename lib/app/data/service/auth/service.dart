@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:firebase_getx_boilerplate/app/data/service/auth/repository.dart';
+import 'package:moji_backoffice/app/data/service/auth/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -36,11 +36,9 @@ class AuthService extends GetxService {
     _refreshToken.value = token;
   }
 
-  Future<String> registerUser(
-      String email, String password, String name, String birth) async {
+  Future<String> registerUser(String email, String password, String name, String birth) async {
     try {
-      Map registerResult =
-          await repository.registerUser(email, password, name, birth);
+      Map registerResult = await repository.registerUser(email, password, name, birth);
       print(registerResult);
       if (registerResult["status"] == "success") {
         return "회원가입에 성공했습니다. 메일을 확인해주세요.";

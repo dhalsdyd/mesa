@@ -1,8 +1,8 @@
-import 'package:firebase_getx_boilerplate/app/core/theme/color_theme.dart';
-import 'package:firebase_getx_boilerplate/app/core/theme/text_theme.dart';
+import 'package:moji_backoffice/app/core/theme/color_theme.dart';
+import 'package:moji_backoffice/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
-class FGBPTextField extends StatelessWidget {
+class MAMSTextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -14,13 +14,115 @@ class FGBPTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
+  final IconData? prefixIcon;
 
-  const FGBPTextField({
+  const MAMSTextField({
     Key? key,
     this.label,
     this.hintText,
     this.controller,
     this.maxLength,
+    this.textInputType,
+    this.onChanged,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.enableInteractiveSelection,
+    this.autofocus = false,
+    this.isPassword = false,
+    this.prefixIcon = Icons.person,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      enableInteractiveSelection: enableInteractiveSelection,
+      obscureText: isPassword,
+      enableSuggestions: !isPassword,
+      autocorrect: !isPassword,
+      autofocus: autofocus,
+      style: MAMSTextTheme.regular16,
+      cursorColor: MAMSColors.mainBlack,
+      keyboardType: textInputType,
+      maxLength: maxLength,
+      controller: controller,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      textInputAction: textInputAction,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+        prefixIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(6),
+                  bottomLeft: Radius.circular(6),
+                ),
+                border: Border.all(color: MAMSColors.border, width: 1),
+              ),
+              child: Icon(prefixIcon),
+            ),
+            const SizedBox(width: 12),
+          ],
+        ),
+        hintText: hintText,
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: const BorderSide(
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: const BorderSide(
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: const BorderSide(
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
+          ),
+        ),
+        counterText: "",
+        fillColor: MAMSColors.white,
+        filled: true,
+        hintStyle: MAMSTextTheme.regular16.copyWith(color: MAMSColors.placeholder),
+      ),
+    );
+  }
+}
+
+class MAMSTextField2 extends StatelessWidget {
+  final String? label;
+  final String? hintText;
+  final bool autofocus;
+  final bool isPassword;
+  final int? maxLength;
+  final int? maxLine;
+  final TextInputType? textInputType;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final TextInputAction? textInputAction;
+  final void Function()? onEditingComplete;
+  final bool? enableInteractiveSelection;
+
+  const MAMSTextField2({
+    Key? key,
+    this.label,
+    this.hintText,
+    this.controller,
+    this.maxLength,
+    this.maxLine,
     this.textInputType,
     this.onChanged,
     this.textInputAction,
@@ -38,38 +140,53 @@ class FGBPTextField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: FGBPTextTheme.regular20,
-      cursorColor: Colors.black,
+      style: MAMSTextTheme.regular16,
+      cursorColor: MAMSColors.mainBlack,
       keyboardType: textInputType,
       maxLength: maxLength,
+      maxLines: maxLine,
       controller: controller,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       textInputAction: textInputAction,
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
         hintText: hintText,
         labelText: label,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(6),
           borderSide: const BorderSide(
-            width: 0,
-            style: BorderStyle.none,
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: const BorderSide(
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: const BorderSide(
+            width: 1,
+            style: BorderStyle.solid,
+            color: MAMSColors.border,
           ),
         ),
         counterText: "",
-        fillColor: FGBPColors.black,
+        fillColor: MAMSColors.white,
         filled: true,
-        hintStyle: FGBPTextTheme.regular20,
-        floatingLabelStyle: const TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 0.4),
-            fontWeight: FontWeight.w500,
-            fontSize: 12),
+        hintStyle: MAMSTextTheme.regular16.copyWith(color: MAMSColors.placeholder),
       ),
     );
   }
 }
 
-class FGBPTextFormField extends StatelessWidget {
+class MAMSTextFormField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -83,7 +200,7 @@ class FGBPTextFormField extends StatelessWidget {
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
 
-  const FGBPTextFormField({
+  const MAMSTextFormField({
     Key? key,
     this.label,
     this.hintText,
@@ -108,7 +225,7 @@ class FGBPTextFormField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: FGBPTextTheme.regular20,
+      style: MAMSTextTheme.regular20,
       onEditingComplete: onEditingComplete,
       cursorColor: Colors.black,
       keyboardType: textInputType,
@@ -126,13 +243,10 @@ class FGBPTextFormField extends StatelessWidget {
           ),
         ),
         counterText: "",
-        fillColor: FGBPColors.black,
+        fillColor: MAMSColors.black,
         filled: true,
-        hintStyle: FGBPTextTheme.regular20,
-        floatingLabelStyle: const TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 0.4),
-            fontWeight: FontWeight.w500,
-            fontSize: 12),
+        hintStyle: MAMSTextTheme.regular20,
+        floatingLabelStyle: const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.4), fontWeight: FontWeight.w500, fontSize: 12),
       ),
       validator: validator,
     );

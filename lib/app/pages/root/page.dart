@@ -1,4 +1,4 @@
-import 'package:firebase_getx_boilerplate/app/core/theme/text_theme.dart';
+import 'package:moji_backoffice/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class RootPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: const [
-            Text("Hello World!!!", style: FGBPTextTheme.bold20),
+            Text("Hello World!!!", style: MAMSTextTheme.bold20),
           ],
         ),
       )),

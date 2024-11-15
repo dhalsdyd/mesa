@@ -1,3 +1,3 @@
-abstract class FGBPApiInterface {
+abstract class MAMSApiInterface {
   Future<void> getInfo();
 }
