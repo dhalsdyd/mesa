@@ -1,31 +1,31 @@
-import 'package:moji_backoffice/app/core/theme/color_theme.dart';
-import 'package:moji_backoffice/app/core/theme/text_theme.dart';
-import 'package:moji_backoffice/app/widgets/button.dart';
+import 'package:mesa/app/core/theme/color_theme.dart';
+import 'package:mesa/app/core/theme/text_theme.dart';
+import 'package:mesa/app/widgets/button.dart';
 import 'package:flutter/material.dart';
 
-class MAMSDialogAction {
+class MESADialogAction {
   final String title;
   final void Function()? onTap;
   final bool isHighlighted;
-  MAMSDialogAction({required this.title, this.onTap, this.isHighlighted = false});
+  MESADialogAction({required this.title, this.onTap, this.isHighlighted = false});
 }
 
-class MAMSDialogActionButton extends StatelessWidget {
-  const MAMSDialogActionButton(this.action, {Key? key}) : super(key: key);
-  final MAMSDialogAction action;
+class MESADialogActionButton extends StatelessWidget {
+  const MESADialogActionButton(this.action, {Key? key}) : super(key: key);
+  final MESADialogAction action;
 
   @override
   Widget build(BuildContext context) {
-    return MAMSMediumTextButton(
+    return MESAMediumTextButton(
       text: action.title,
       onTap: action.onTap,
-      color: action.isHighlighted ? MAMSColors.mainColor : MAMSColors.black,
+      color: action.isHighlighted ? MESAColors.mainColor : MESAColors.black,
     );
   }
 }
 
-class MAMSDialog extends StatelessWidget {
-  const MAMSDialog({
+class MESADialog extends StatelessWidget {
+  const MESADialog({
     Key? key,
     required this.title,
     required this.content,
@@ -35,7 +35,7 @@ class MAMSDialog extends StatelessWidget {
   final String title;
   final String content;
 
-  final List<MAMSDialogAction> actions;
+  final List<MESADialogAction> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +47,15 @@ class MAMSDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(title, style: MAMSTextTheme.boldMain20),
+            Text(title, style: MESATextTheme.boldMain20),
             const SizedBox(height: 12),
-            Text(content, style: MAMSTextTheme.regular12),
+            Text(content, style: MESATextTheme.regular12),
             const SizedBox(height: 12),
             for (var action in actions)
               Column(
                 children: [
                   const SizedBox(height: 12),
-                  MAMSDialogActionButton(action),
+                  MESADialogActionButton(action),
                 ],
               ),
           ],

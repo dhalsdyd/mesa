@@ -3,13 +3,12 @@ import 'package:get_storage/get_storage.dart';
 
 // Alternatives include have, shared_preferences, flutter_secure_storage, sqflite, moor and so on.
 
-const String nameKey = "STRING";
-
 class LocalDatabase extends GetxService {
   GetStorage? box;
 
   @override
-  void onInit() {
+  void onInit() async {
+    await GetStorage.init();
     box = GetStorage();
     super.onInit();
   }
@@ -32,11 +31,19 @@ class LocalDatabase extends GetxService {
     box!.write(key, value);
   }
 
-  void read(String key) {
-    box!.read(key);
+  String? read(String key) {
+    return box!.read(key);
+  }
+
+  bool hasData(String key) {
+    return box!.hasData(key);
   }
 
   void remove(String key) {
     box!.remove(key);
+  }
+
+  void removeAll() {
+    box!.erase();
   }
 }

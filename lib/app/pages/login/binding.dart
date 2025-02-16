@@ -1,4 +1,4 @@
-import 'package:moji_backoffice/app/pages/login/controller.dart';
+import 'package:mesa/app/pages/login/controller.dart';
 import 'package:get/get.dart';
 
 class LoginPageBinding implements Bindings {

@@ -1,7 +1,5 @@
 import 'dart:async';
-
-import 'package:dio/dio.dart';
-import 'package:moji_backoffice/app/data/service/auth/repository.dart';
+import 'package:mesa/app/data/service/auth/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -9,65 +7,67 @@ class AuthService extends GetxService {
   final AuthRepository repository;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
-  final Rx<String?> _accessToken = Rx(null);
-  final Rx<String?> _refreshToken = Rx(null);
+  final Rx<String?> _id = Rx('');
+  final Rx<String?> _password = Rx('');
+  final Rx<String?> _name = Rx('');
+  final Rx<DateTime?> _lastLogin = Rx(DateTime.now());
+  final Rx<String> written = ''.obs;
 
-  /// google sign-in과 onboarding 과정이 완료되었을 경우 true
-  bool get isAuthenticated => _accessToken.value != null;
+  bool get isAuthenticated => _id.value != null;
 
-  String? get accessToken => _accessToken.value;
-  String? get refreshToken => _refreshToken.value;
+  String? get id => _id.value;
+  String? get password => _password.value;
+  String? get name => _name.value;
+  DateTime? get lastLogin => _lastLogin.value;
 
   AuthService(this.repository);
 
   Future<AuthService> init() async {
-    _accessToken.value = await _storage.read(key: 'accessToken');
-    _refreshToken.value = await _storage.read(key: 'refreshToken');
+    _id.value = await _storage.read(key: 'id');
+    _password.value = await _storage.read(key: 'password');
+    _name.value = await _storage.read(key: 'name');
+    _lastLogin.value = DateTime.parse(await _storage.read(key: 'lastLogin') ?? DateTime.now().toString());
+
     return this;
   }
 
-  Future<void> _setAccessToken(String token) async {
-    await _storage.write(key: 'accessToken', value: token);
-    _accessToken.value = token;
+  Future<void> _setId(String id) async {
+    await _storage.write(key: 'id', value: id);
+    _id.value = id;
   }
 
-  Future<void> _setRefreshToken(String token) async {
-    await _storage.write(key: 'refreshToken', value: token);
-    _refreshToken.value = token;
+  Future<void> _setPassword(String password) async {
+    await _storage.write(key: 'password', value: password);
+    _password.value = password;
   }
 
-  Future<String> registerUser(String email, String password, String name, String birth) async {
-    try {
-      Map registerResult = await repository.registerUser(email, password, name, birth);
-      print(registerResult);
-      if (registerResult["status"] == "success") {
-        return "회원가입에 성공했습니다. 메일을 확인해주세요.";
-      } else {
-        return "fail";
+  Future<void> login(String id, String password) async {
+    await _setId(id);
+    await _setPassword(password);
+    _name.value = "MESA $id";
+    await _storage.write(key: 'name', value: "MESA $id");
+  }
+
+  Future<bool> getState() async {
+    if (id != null && password != null) {
+      final response = await repository.login(id!, password!);
+      if (response['value'] == 'Success') {
+        if (response.containsKey('texts')) {
+          written.value = response['texts'];
+          return true;
+        }
       }
-    } on DioError catch (e) {
-      rethrow;
     }
+    return false;
   }
-
-  Future<void> login(String email, String password) async {
-    try {
-      Map loginResult = await repository.login(email, password);
-      print(loginResult);
-      _setAccessToken(loginResult["data"]["accessToken"]);
-      _setRefreshToken(loginResult["data"]["refreshToken"]);
-    } on DioError catch (e) {
-      print(e.response!.statusCode.toString());
-      rethrow;
-    }
-  }
-
-  Future<void> refreshAcessToken() async {}
 
   Future<void> logout() async {
-    _accessToken.value = null;
-    _refreshToken.value = null;
-    await _storage.delete(key: 'accessToken');
-    await _storage.delete(key: 'refreshToken');
+    _id.value = null;
+    _password.value = null;
+
+    await _storage.delete(key: 'id');
+    await _storage.delete(key: 'password');
+    await _storage.delete(key: 'name');
+    await _storage.delete(key: 'lastLogin');
   }
 }

@@ -1,8 +1,8 @@
-import 'package:moji_backoffice/app/core/theme/color_theme.dart';
-import 'package:moji_backoffice/app/core/theme/text_theme.dart';
+import 'package:mesa/app/core/theme/color_theme.dart';
+import 'package:mesa/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
-class MAMSTextField extends StatelessWidget {
+class MESATextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -16,7 +16,7 @@ class MAMSTextField extends StatelessWidget {
   final bool? enableInteractiveSelection;
   final IconData? prefixIcon;
 
-  const MAMSTextField({
+  const MESATextField({
     Key? key,
     this.label,
     this.hintText,
@@ -40,8 +40,8 @@ class MAMSTextField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: MAMSTextTheme.regular16,
-      cursorColor: MAMSColors.mainBlack,
+      style: MESATextTheme.regular16,
+      cursorColor: MESAColors.mainBlack,
       keyboardType: textInputType,
       maxLength: maxLength,
       controller: controller,
@@ -60,7 +60,7 @@ class MAMSTextField extends StatelessWidget {
                   topLeft: Radius.circular(6),
                   bottomLeft: Radius.circular(6),
                 ),
-                border: Border.all(color: MAMSColors.border, width: 1),
+                border: Border.all(color: MESAColors.border, width: 1),
               ),
               child: Icon(prefixIcon),
             ),
@@ -74,7 +74,7 @@ class MAMSTextField extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -82,7 +82,7 @@ class MAMSTextField extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         enabledBorder: OutlineInputBorder(
@@ -90,19 +90,19 @@ class MAMSTextField extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         counterText: "",
-        fillColor: MAMSColors.white,
+        fillColor: MESAColors.white,
         filled: true,
-        hintStyle: MAMSTextTheme.regular16.copyWith(color: MAMSColors.placeholder),
+        hintStyle: MESATextTheme.regular16.copyWith(color: MESAColors.placeholder),
       ),
     );
   }
 }
 
-class MAMSTextField2 extends StatelessWidget {
+class MESATextField2 extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -116,7 +116,7 @@ class MAMSTextField2 extends StatelessWidget {
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
 
-  const MAMSTextField2({
+  const MESATextField2({
     Key? key,
     this.label,
     this.hintText,
@@ -140,8 +140,8 @@ class MAMSTextField2 extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: MAMSTextTheme.regular16,
-      cursorColor: MAMSColors.mainBlack,
+      style: MESATextTheme.regular16,
+      cursorColor: MESAColors.mainBlack,
       keyboardType: textInputType,
       maxLength: maxLength,
       maxLines: maxLine,
@@ -150,6 +150,7 @@ class MAMSTextField2 extends StatelessWidget {
       onEditingComplete: onEditingComplete,
       textInputAction: textInputAction,
       decoration: InputDecoration(
+        isDense: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
         hintText: hintText,
         labelText: label,
@@ -158,7 +159,7 @@ class MAMSTextField2 extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -166,7 +167,7 @@ class MAMSTextField2 extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         enabledBorder: OutlineInputBorder(
@@ -174,19 +175,19 @@ class MAMSTextField2 extends StatelessWidget {
           borderSide: const BorderSide(
             width: 1,
             style: BorderStyle.solid,
-            color: MAMSColors.border,
+            color: MESAColors.border,
           ),
         ),
         counterText: "",
-        fillColor: MAMSColors.white,
+        fillColor: MESAColors.white,
         filled: true,
-        hintStyle: MAMSTextTheme.regular16.copyWith(color: MAMSColors.placeholder),
+        hintStyle: MESATextTheme.regular16.copyWith(color: MESAColors.placeholder),
       ),
     );
   }
 }
 
-class MAMSTextFormField extends StatelessWidget {
+class MESATextFormField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -200,7 +201,7 @@ class MAMSTextFormField extends StatelessWidget {
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
 
-  const MAMSTextFormField({
+  const MESATextFormField({
     Key? key,
     this.label,
     this.hintText,
@@ -225,7 +226,7 @@ class MAMSTextFormField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: MAMSTextTheme.regular20,
+      style: MESATextTheme.regular20,
       onEditingComplete: onEditingComplete,
       cursorColor: Colors.black,
       keyboardType: textInputType,
@@ -243,9 +244,9 @@ class MAMSTextFormField extends StatelessWidget {
           ),
         ),
         counterText: "",
-        fillColor: MAMSColors.black,
+        fillColor: MESAColors.black,
         filled: true,
-        hintStyle: MAMSTextTheme.regular20,
+        hintStyle: MESATextTheme.regular20,
         floatingLabelStyle: const TextStyle(color: Color.fromRGBO(0, 0, 0, 0.4), fontWeight: FontWeight.w500, fontSize: 12),
       ),
       validator: validator,

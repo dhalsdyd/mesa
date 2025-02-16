@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-abstract class MAMSColors {
+abstract class MESAColors {
   /// Main Color
-  static const mainColor = Colors.amber;
+  static const mainColor = Color(0xFF8BC34A);
 
   /// Sub Color
   static const subColor = Color(0xffe2eaff);

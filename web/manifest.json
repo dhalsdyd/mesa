@@ -1,6 +1,6 @@
 {
-    "name": "MAMS",
-    "short_name": "MAMS",
+    "name": "MESA",
+    "short_name": "MESA",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

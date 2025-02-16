@@ -1,11 +1,11 @@
-import 'package:moji_backoffice/app/core/theme/color_theme.dart';
+import 'package:mesa/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MAMSSnackBar {
+class MESASnackBar {
   static void open(
     String title, {
-    Color backgroundColor = MAMSColors.mainColor,
+    Color backgroundColor = MESAColors.mainBlack,
     Color textColor = Colors.white,
   }) {
     Get.rawSnackbar(
@@ -20,11 +20,11 @@ class MAMSSnackBar {
   }
 }
 
-class MAMSErrorSnackBar {
+class MESAErrorSnackBar {
   void open(String title, {String? message}) {
-    MAMSSnackBar.open(
+    MESASnackBar.open(
       title,
-      backgroundColor: MAMSColors.grey,
+      backgroundColor: Colors.red,
       textColor: Colors.white,
     );
   }
